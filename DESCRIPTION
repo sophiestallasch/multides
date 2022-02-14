@@ -18,4 +18,5 @@ Imports:
     moments (>= 0.14),
     stringr (>= 1.4.0),
     rlang (>= 0.4.12),
-    tidyr (>= 1.1.4)
+    tidyr (>= 1.1.4),
+    corrr (>= 0.4.3)
