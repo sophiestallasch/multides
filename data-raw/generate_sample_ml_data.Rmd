@@ -1,0 +1,150 @@
+---
+title: "Generate Sample Multilevel Data for R Package `multides`"
+author: "Sophie E. Stallasch"
+date: "2022-02-14"
+output: html_document
+---
+&nbsp;
+
+This vignette documents the process of generating some sample data with a multilevel (i.e., nested) structure for testing and running the examples of the `multides` package. 
+Data were generated using the `simstudy` package (see also the vignette on how to generate clustered data: https://cran.r-project.org/web/packages/simstudy/vignettes/clustered.html)
+
+
+```{r, echo=T, results='hide', message=FALSE}
+# -- install required packages
+# install.packages("simstudy")
+# install.packages("tidyverse")
+
+# -- load required packages
+library(simstudy)
+library(magrittr)
+library(dplyr)
+library(tidyr)
+```
+
+```{r}
+devtools::session_info()
+```
+&nbsp;
+
+The sample dataset has a four-level structure where students at level 1 (L1) are nested within classrooms at L2, that are nested within schools at L3, that are, again, nested within school types at L4. The data should be unbalanced, that is, the number of students within classrooms varies, as do the number of classrooms within schools and the number of schools within school types.  
+The target variables are achievement scores in mathematics and reading that vary by school type, school, and classroom, and are influenced by the students' gender and socioeconomic status.
+
+&nbsp;
+
+##### **Step #1: Generate Level 4 Data (School Types)**
+Data are generated for 5 school types as they exist in the German school system (vocational, intermediate, multitrack, comprehensive, and academic school). The number of schools varies by school type (between 100 and 120 schools).
+```{r}
+# set a seed for reproducibility
+set.seed(2022)
+```
+
+```{r}
+# achievement varies by school type (t0)
+gen.ts <- defData(varname = "t0", dist = "normal", formula = 0, variance = 10, id = "ts")
+gen.ts <- defData(gen.ts, varname = "n_sch", dist = "uniformInt", formula = "100;120")
+
+# 5 school types
+dat.ts <- genData(5, gen.ts)
+
+dat.ts
+```
+The school type should be sorted by the variable t0 so that less demanding schools have lower values on t0. 
+```{r}
+# sort school types by t0
+dat.ts <- dat.ts %>% 
+  arrange(t0) %>% 
+  mutate(ts = 1:nrow(.))
+
+dat.ts
+```
+&nbsp;
+
+##### **Step #2: Generate Level 3 Data (Schools)**
+```{r}
+# achievement varies by school
+gen.sch <- defDataAdd(varname = "s0", dist = "normal", formula = 0, variance = 5)
+gen.sch <- defDataAdd(gen.sch, varname = "n_cla", dist = "uniformInt", formula = "1;4")
+
+dat.sch <- genCluster(dat.ts, "ts", numIndsVar = "n_sch", level1ID = "id_sch")
+dat.sch <- addColumns(gen.sch, dat.sch)
+
+head(dat.sch, 10)
+```
+&nbsp;
+
+##### **Step #3: Generate Level 2 Data (Classrooms)**
+```{r}
+# achievement varies by classroom
+gen.cla <- defDataAdd(varname = "c0", dist = "normal", formula = 0, variance = 2)
+gen.cla <- defDataAdd(gen.cla, varname = "n_stu", dist = "uniformInt", formula = "10;30")
+
+dat.cla <- genCluster(dat.sch, "id_sch", numIndsVar = "n_cla", level1ID = "id_cla")
+dat.cla <- addColumns(gen.cla, dat.cla)
+
+head(dat.cla, 10)
+```
+&nbsp;
+
+##### **Step #4: Generate Level 1 Data (Students)**
+Achievement scores in mathematics and reading vary by school type, school, and classroom. Also, they are influenced by students' gender and socioeconomic status. Further, students' socioeconomic status varies by school type, school, and classroom.
+```{r}
+# create a variable for students' gender
+gen.stu <- defDataAdd(varname = "gender", dist = "binary", formula = 0.5)
+# create a variable for students' socioeconomic status 
+gen.stu <- defDataAdd(gen.stu, varname = "ses", dist = "normal", formula = "0.5*t0 + s0 + c0", variance = 20)
+
+# -- create achievement scores
+# mathematics
+gen.stu <- defDataAdd(gen.stu, varname = "math", dist = "normal", 
+                      formula = "- 1.25*gender + (10^-4)*ses + t0 + s0 + c0", variance = 15)
+# reading
+gen.stu <- defDataAdd(gen.stu, varname = "read", dist = "normal", 
+                      formula = "1.75*gender + (10^-4)*ses + 0.25*math + t0 + s0 + c0", variance = 15)
+
+
+dat.stu <- genCluster(dat.cla, cLevelVar = "id_cla", numIndsVar = "n_stu", level1ID = "id_stu")
+dat.stu <- addColumns(gen.stu, dat.stu)
+head(dat.stu, 10)
+```
+&nbsp;
+
+##### **Creating the Final Sample Dataset** 
+```{r}
+# -- Data cleaning and missing values
+
+# remove weights for school types, schools, and classrooms
+studach <- dat.stu %>% 
+  select(- ends_with("0"))
+
+
+# introduce some missing values (up to 5%) on ses, math, and read
+cols_miss = c("ses","math","read")
+prc_miss = 0.05
+
+set.seed(2022)
+studach <- studach %>%
+  gather(var, value, -id_stu) %>% 
+  mutate(
+    # simulate a random number from 0 to 1 for each row
+    r = runif(nrow(.)),
+         # update to NA for cols_miss when r is smaller or equal than 5%
+         value = ifelse(var %in% cols_miss & r <= prc_miss, NA, value)) %>% 
+  select(-r) %>%                 
+  spread(var, value)
+
+
+# create a variable indicating the name of the school type
+studach <- studach %>% 
+  mutate(ts_name = recode(as.factor(ts), 
+                          "1" = "vocational", 
+                          "2" = "intermediate", 
+                          "3" = "multitrack", 
+                          "4" = "comprehensive",
+                          "5" = "academic"))
+
+# sort columns
+names(studach)
+studach <- studach[, c("id_stu", "id_cla", "id_sch", "ts", "ts_name", "n_stu", "n_cla", "n_sch", "gender", "ses", "math", "read")]
+head(studach, 10)
+```
