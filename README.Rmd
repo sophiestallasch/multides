@@ -1,0 +1,92 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+options(tibble.print_min = 20, tibble.print_max = 20)
+```
+
+# multides
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The `multides` package is a companion `R` package of the project 'MULTI-DES: 
+Multilevel Design Parameters and Effect Size Benchmarks for Students’ Competencies'.
+
+`multides` compiles tools that were developed for the analyses conducted 
+within the 'MULTI-DES' project framework. The functions are used to replicate 
+the `R` code that accompanies the manuscripts prepared within 'MULTI-DES'.
+The `R` scripts are shared via the Open Science Framework (OSF; see below). 
+
+Nevertheless, the application scope of `multides` is not limited to the 
+analyses specific to 'MULTI-DES'. The functions provided can also be used in other
+contexts of (multilevel) data analysis, for instance, 
+to easily generate overviews of descriptive statistics, single- and multilevel 
+correlation matrices, or to calculate (multilevel) design parameters such as 
+intraclass correlation coefficients and explained variances by covariates 
+at each hierarchical level with corresponding standard errors, 
+based on the variance components estimated from single- or multilevel models.
+
+## The 'MULTI-DES' Project
+
+'MULTI-DES' is funded by the German Research Foundation (DFG) and aims at investigating 
+(1) single- and multilevel design parameters that are needed to efficiently plan
+adequately powered individually and cluster-randomized trials on student achievement, 
+respectively, as well as
+(2) effect size benchmarks in terms of academic growth and performance gaps between schools
+to appropriately interpret and communicate the results of such studies. 
+In 'MULTI-DES', representative data from three German longitudinal large-scale assessments 
+were used to apply multilevel and structural equation modeling. For more information on 
+'MULTI-DES', visit https://www.uni-potsdam.de/en/quantmethoden/forschung.
+
+The 'MULTI-DES' project contains 3 manuscripts so far (that are either published or in progress):  
+1) Stallasch, S. E., Lüdtke, O., Artelt, C., & Brunner, M. (2021). 
+Multilevel design parameters to plan cluster-randomized intervention studies on student achievement 
+in elementary and secondary school. Journal of Research on Educational Effectiveness, 14, 172–206. 
+https://doi.org/10.1080/19345747.2020.1823539  
+The `R` code for this manuscript is accessible via the OSF under https://osf.io/2w8nt.  
+
+2) Stallasch, S. E., Lüdtke, O., Artelt, C., & Brunner, M. (in progress). 
+Single- and multilevel perspectives on covariate selection in randomized trials on student achievement.  
+
+3) Brunner, M., Stallasch, S. E., Lüdtke, O., & Artelt, C. (in progress). 
+Empirical benchmarks to interpret effect sizes related to K-12 students’ achievement: 
+An update with results from Germany.
+
+## Installation
+
+You can install the development version of `multides` from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("sophiestallasch/multides")
+```
+
+## Usage
+
+```{r example}
+library(multides)
+
+# calculate a range of descriptive statistics for a series of numeric variables,
+# grouped by school type
+describe_stats(studach, gender:read, ts_name)
+
+# calculate multilevel correlations between group means at the school level
+correlate_ml(studach, gender:read, id_sch)
+```
+
+
+## Help & Suggestions
+
+If you encounter a bug, have questions or suggestions for improvement, please file an issue on 
+[GitHub](https://github.com/sophiestallasch/multides/issues) or [email me](mailto:sophie.stallasch@gmail.com), 
+possibly including a minimal reproducible example.
