@@ -19,6 +19,7 @@ Imports:
     stringr (>= 1.4.0),
     rlang (>= 0.4.12),
     tidyr (>= 1.1.4),
-    corrr (>= 0.4.3)
+    corrr (>= 0.4.3),
+    openxlsx (>= 4.2.5)
 URL: https://github.com/sophiestallasch/multides
 BugReports: https://github.com/sophiestallasch/multides/issues
