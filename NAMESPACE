@@ -2,4 +2,7 @@
 
 export(correlate_ml)
 export(create_xlsx_overview)
+export(csv2list)
+export(dat2list)
 export(describe_stats)
+export(rda2list)
