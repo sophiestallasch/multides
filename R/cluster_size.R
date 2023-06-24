@@ -16,7 +16,7 @@
 #' Total sample sizes at each hierarchical level can be included via the
 #' `.total`argument.
 #'
-#' @param .data A data frame.
+#' @param data A data frame.
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]>
 #' The names or column numbers of the identifiers depicting the cluster
 #' structure in ascending order (e.g., students, classrooms, schools:
@@ -48,7 +48,7 @@
 #'              .fns = list("mdn" = median),
 #'              .total = TRUE)
 
-cluster_size <- function(.data, ..., .fns, .total = FALSE) {
+cluster_size <- function(data, ..., .fns, .total = FALSE) {
 
   ids <- rlang::enexprs(...)
   out_list <- vector("list")
@@ -58,7 +58,7 @@ cluster_size <- function(.data, ..., .fns, .total = FALSE) {
 
     for (i in 1:(length(ids)-1)) {
 
-      out_list[[i]] <- dplyr::group_by(.data, !!!ids[i+1], .add = TRUE)
+      out_list[[i]] <- dplyr::group_by(data, !!!ids[i+1], .add = TRUE)
       out_list[[i]] <- dplyr::reframe(out_list[[i]],
                                       "{ids[1]}" := unique(!!!ids[1]),
                                       "{ids[1]}_units_per_{ids[i+1]}" := length(unique(!!!ids[1])),
@@ -87,7 +87,7 @@ cluster_size <- function(.data, ..., .fns, .total = FALSE) {
 
     for (i in 1:(length(ids)-1)) {
 
-      out_list[[i]] <- dplyr::group_by(.data, !!!ids[i+1], .add = TRUE)
+      out_list[[i]] <- dplyr::group_by(data, !!!ids[i+1], .add = TRUE)
       out_list[[i]] <- dplyr::summarize(out_list[[i]],
                                         "{ids[i]}_units_per_{ids[i+1]}" := length(unique(!!!ids[i])),
                                         "{ids[1]}_units_per_{ids[i+1]}" := length(unique(!!!ids[1])))
@@ -100,7 +100,7 @@ cluster_size <- function(.data, ..., .fns, .total = FALSE) {
 
   # include total sample sizes at each hierarchical level
   if (.total == TRUE) {
-    n <- dplyr::summarize(.data, dplyr::across(c(...), ~ length(unique(.)), .names = "n_{.col}" ))
+    n <- dplyr::summarize(data, dplyr::across(c(...), ~ length(unique(.)), .names = "n_{.col}" ))
     out <- cbind(out, n)
   }
 

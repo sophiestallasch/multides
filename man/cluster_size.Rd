@@ -4,10 +4,10 @@
 \alias{cluster_size}
 \title{Compute cluster sizes in multilevel designs}
 \usage{
-cluster_size(.data, ..., .fns, .total = FALSE)
+cluster_size(data, ..., .fns, .total = FALSE)
 }
 \arguments{
-\item{.data}{A data frame.}
+\item{data}{A data frame.}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}>
 The names or column numbers of the identifiers depicting the cluster
