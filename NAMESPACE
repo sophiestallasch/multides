@@ -2,6 +2,7 @@
 
 export(analyze_selectivity)
 export(cluster_means)
+export(cluster_size)
 export(compose)
 export(correlate_ml)
 export(create_xlsx_overview)
