@@ -19,48 +19,69 @@ options(tibble.print_min = 20, tibble.print_max = 20)
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `multides` package is a companion `R` package of the project 'MULTI-DES: 
-Multilevel Design Parameters and Effect Size Benchmarks for Students’ Competencies'.
+The `multides` package is a companion R package of the project "MULTI-DES: 
+Multilevel Design Parameters and Effect Size Benchmarks for Students’ Competencies,"
+as well as its follow-up project "MULTI-DES 2: Multilevel Design Parameters 
+for Sample Size Planning of Randomized Intervention Studies in Preschool, 
+Elementary and Secondary School."
 
-`multides` compiles tools that were developed for the analyses conducted 
-within the 'MULTI-DES' project framework. The functions are used to replicate 
-the `R` code that accompanies the manuscripts prepared within 'MULTI-DES'.
-The `R` scripts are shared via the Open Science Framework (OSF; see below). 
+`multides` compiles tools that were developed to facilitate the analyses conducted 
+within the MULTI-DES project framework. The functions may be used to replicate 
+the R code that accompanies the manuscripts prepared within MULTI-DES. 
+All R scripts are shared via the Open Science Framework (OSF; see below). 
 
 Nevertheless, the application scope of `multides` is not limited to the 
-analyses specific to 'MULTI-DES'. The functions provided can also be used in other
-contexts of (multilevel) data analysis, for instance, 
-to easily generate overviews of descriptive statistics, single- and multilevel 
-correlation matrices, or to calculate (multilevel) design parameters such as 
-intraclass correlation coefficients and explained variances by covariates 
+analyses specific to MULTI-DES. The functions provided can also be used in other
+contexts of (multilevel) data analysis, for instance, to easily generate 
+overviews of descriptive statistics, single- and multilevel 
+correlation matrices, or--most importantly--to calculate (multilevel) design parameters 
+such as intraclass correlation coefficients and explained variances by covariates 
 at each hierarchical level with corresponding standard errors, 
 based on the variance components estimated from single- or multilevel models.
 
-## The 'MULTI-DES' Project
+## The MULTI-DES Project
 
-'MULTI-DES' is funded by the German Research Foundation (DFG) and aims at investigating 
+MULTI-DES is funded by the German Research Foundation (DFG) and aims at investigating 
 (1) single- and multilevel design parameters that are needed to efficiently plan
-adequately powered individually and cluster-randomized trials on student achievement, 
-respectively, as well as
-(2) effect size benchmarks in terms of academic growth and performance gaps between schools
-to appropriately interpret and communicate the results of such studies. 
-In 'MULTI-DES', representative data from three German longitudinal large-scale assessments 
-were used to apply multilevel and structural equation modeling. For more information on 
-'MULTI-DES', visit https://www.uni-potsdam.de/en/quantmethoden/forschung.
+adequately powered individually and cluster randomized trials on various outcomes 
+(viz., achievement/cognitive outcomes and socio-emotional learning outcomes) 
+in preschool, elementary and secondary school, as well as
+(2) effect size benchmarks in terms of academic growth and performance gaps between 
+schools or policy-relevant groups to appropriately interpret and communicate the 
+results of such studies. 
+In MULTI-DES, rich data from several German (longitudinal) large-scale assessments 
+were used to apply multilevel and structural equation modeling. For more information 
+on MULTI-DES, visit https://www.uni-potsdam.de/en/quantmethoden/forschung.
 
-The 'MULTI-DES' project contains 3 manuscripts so far (that are either published or in progress):  
-1) Stallasch, S. E., Lüdtke, O., Artelt, C., & Brunner, M. (2021). 
-Multilevel design parameters to plan cluster-randomized intervention studies on student achievement 
-in elementary and secondary school. Journal of Research on Educational Effectiveness, 14, 172–206. 
-https://doi.org/10.1080/19345747.2020.1823539  
-The `R` code for this manuscript is accessible via the OSF under https://osf.io/2w8nt.  
+### Publications, Preprints, and Manuscripts in Preparation 
 
-2) Stallasch, S. E., Lüdtke, O., Artelt, C., & Brunner, M. (in progress). 
-Single- and multilevel perspectives on covariate selection in randomized trials on student achievement.  
+Brunner, M., Stallasch, S. E., & Lüdtke, O. (2023). Empirical benchmarks to 
+interpret intervention effects on student achievement in elementary and 
+secondary school: Meta-analytic results from Germany. 
+*Journal of Research on Educational Effectiveness*, *17*(1), 1–39. 
+https://doi.org/10.1080/19345747.2023.2175753 <br>
+[R code](https://osf.io/wp5rf)
 
-3) Brunner, M., Stallasch, S. E., Lüdtke, O., & Artelt, C. (in progress). 
-Empirical benchmarks to interpret effect sizes related to K-12 students’ achievement: 
-An update with results from Germany.
+Brunner, M., Stallasch, S. E., Artelt, C., Hedges, L.V., & Lüdtke, O. (2024). 
+*An individual participant meta-analysis to support power analyses for randomized* 
+*intervention studies in preschool: Cognitive and socio-emotional learning outcomes* 
+[Manuscript in preparation]. Faculty of Human Sciences, University of Potsdam.
+
+Stallasch, S. E., Lüdtke, O., Artelt, C., & Brunner, M. (2021). 
+Multilevel design parameters to plan cluster-randomized intervention studies on 
+student achievement in elementary and secondary school. 
+*Journal of Research on Educational Effectiveness*, *14*, 172–206. 
+https://doi.org/10.1080/19345747.2020.1823539 <br> 
+[R code](https://osf.io/2w8nt)  
+
+Stallasch, S. E., Lüdtke, O., Artelt, C., Hedges, L. V., & Brunner, M. (in press). 
+Single- and multilevel perspectives on covariate selection in randomized 
+intervention studies on student achievement. *Educational Psychology Review*. <br>
+[Preprint](https://osf.io/preprints/psyarxiv/5ajmg) <br>
+[R code](https://osf.io/nhx4w)
+
+
+
 
 ## Installation
 
