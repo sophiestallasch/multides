@@ -1,11 +1,14 @@
 Package: multides
-Title: R Tools for the 'MULTI-DES' Project
+Title: R Tools for the MULTI-DES Project
 Version: 0.0.0.9000
 Authors@R: 
     person("Sophie E.", "Stallasch", , "sophie.stallasch@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4433-2600"))
 Description: Functions used in the analyses conducted in the context of the project 
-    'MULTI-DES: Multilevel Design Parameters and Effect Size Benchmarks for Students’ Competencies'.
+    "MULTI-DES: Multilevel Design Parameters and Effect Size Benchmarks for Students’ Competencies," 
+    and its follow-up project 
+    "MULTI-DES 2: Multilevel Design Parameters for Sample Size Planning of Randomized Intervention 
+    Studies in Preschool, Elementary and Secondary School."
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
