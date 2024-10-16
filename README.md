@@ -43,7 +43,14 @@ large-scale assessments were used to apply multilevel and structural
 equation modeling. For more information on MULTI-DES, visit
 <https://www.uni-potsdam.de/en/quantmethoden/forschung>.
 
-### Publications, Preprints, and Manuscripts in Preparation
+### Publications and Preprints
+
+Brunner, M., Stallasch, S. E., Artelt, C., Hedges, L. V., & Lüdtke, O.
+(2024). An individual participant data meta-analysis to support power
+analyses for randomized intervention studies in preschool: Cognitive and
+socio-emotional learning outcomes. PsyArXiv.
+<https://doi.org/10.31234/osf.io/dkw42> <br>
+[Preprint](https://osf.io/preprints/psyarxiv/dkw42)
 
 Brunner, M., Stallasch, S. E., & Lüdtke, O. (2023). Empirical benchmarks
 to interpret intervention effects on student achievement in elementary
@@ -51,12 +58,6 @@ and secondary school: Meta-analytic results from Germany. *Journal of
 Research on Educational Effectiveness*, *17*(1), 1–39.
 <https://doi.org/10.1080/19345747.2023.2175753> <br> [R
 code](https://osf.io/wp5rf)
-
-Brunner, M., Stallasch, S. E., Artelt, C., Hedges, L.V., & Lüdtke, O.
-(2024). *An individual participant meta-analysis to support power
-analyses for randomized* *intervention studies in preschool: Cognitive
-and socio-emotional learning outcomes* \[Manuscript in preparation\].
-Faculty of Human Sciences, University of Potsdam.
 
 Stallasch, S. E., Lüdtke, O., Artelt, C., & Brunner, M. (2021).
 Multilevel design parameters to plan cluster-randomized intervention
@@ -66,10 +67,10 @@ studies on student achievement in elementary and secondary school.
 code](https://osf.io/2w8nt)
 
 Stallasch, S. E., Lüdtke, O., Artelt, C., Hedges, L. V., & Brunner, M.
-(in press). Single- and multilevel perspectives on covariate selection
-in randomized intervention studies on student achievement. *Educational
-Psychology Review*. <br>
-[Preprint](https://osf.io/preprints/psyarxiv/5ajmg) <br> [R
+(2024). Single- and multilevel perspectives on covariate selection in
+randomized intervention studies on student achievement. *Educational
+Psychology Review*, *36*, 112.
+<https://doi.org/10.1007/s10648-024-09898-7> <br> [R
 code](https://osf.io/nhx4w)
 
 ## Installation
